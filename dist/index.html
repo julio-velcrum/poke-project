@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PokeAPI</title>
-    <link rel="stylesheet" href="./estilos.css">
+    <link rel="stylesheet" href="/src/estilos.css">
 
     <!-- CSS Google Fonts: Roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,9 +21,6 @@
         <h2 class="info__elemento" id="nombre"></h2>
 
         <img class="info__elemento" id="imagen">
-
-        <label for="categoria" class="info__elemento">Categoria</label>
-        <input type="text" class="info__elemento" id="categoria">
         
         <label for="tipo" class="info__elemento">Tipo</label>
         <input type="text" class="info__elemento" id="tipo">
@@ -31,21 +28,15 @@
         <label for="habilidad" class="info__elemento">Habilidad</label>
         <input type="text" class="info__elemento" id="habilidad">
         
-        <label for="haboculta" class="info__elemento">Habilidad oculta</label>
-        <input type="text" class="info__elemento" id="haboculta">
-        
         <label for="peso" class="info__elemento">Peso</label>
         <input type="text" class="info__elemento" id="peso">
 
         <label for="altura" class="info__elemento">Altura</label>
         <input type="text" class="info__elemento" id="altura">
 
-        <label for="imc" class="info__elemento">IMC</label>
-        <input type="text" class="info__elemento" id="imc">
-
         <button type="button" class="info__elemento" onclick="obtenerDatosPokemon()">Obtener Valores</button>
     </div>
 
-    <script src="./logica.js"></script>
+    <script src="/src/logica.js"></script>
 </body>
 </html>

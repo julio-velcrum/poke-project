@@ -1,54 +1,43 @@
-let categoria = 'Ratón';
-let tipo = 'ELÉCTRICO';
-let habilidad = 'Electricidad estática';
-let habilidadOculta = 'Pararrayos';
-let peso = 6; //kg
-let altura = 0.4 //mts
-
 let pokemon = {
-    id: 25,
-    nombre: 'Pikachu',
-    imagen: () => {
-        fetch('https://pokeapi.co/api/v2/pokemon/25/')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById("imagen").src = data.sprites.other.home.front_default;
-        })
+    id: 0,
+    nombre: '',
+    imagen: '',
+    tipo: '',
+    habilidad: function (abilities) {
+        let habilidades = '';
+        for (let posicion of abilities) {
+            habilidades += posicion.ability.name + ', ';
+            console.log(habilidades);
+        }
+        return habilidades;
     },
-    categoria: 'Ratón',
-    tipo: 'ELÉCTRICO',
-    habilidad: 'Electricidad estática',
-    habilidadOculta: 'Pararrayos',
-    peso: 6,
-    altura: 0.4,
-    obtenerIMC: () => peso / Math.pow(altura, 2),
-    obtenerIMC2: function() {
-        return this.peso / Math.pow(this.altura, 2);
-    }
+    peso: 0,
+    altura: 0
 };
 
-//console.log('variable peso es de tipo: ' + typeof(peso));
-
-//function nombreDeLaFuncion() { }
-//function() {}
-// () => {}
 
 function obtenerDatosPokemon() {
-    // document.getElementById("categoria").value = categoria;
-    // document.getElementById("tipo").value = tipo;
-    // document.getElementById("habilidad").value = habilidad;
-    // document.getElementById("haboculta").value = habilidadOculta;
-    // document.getElementById("peso").value = peso;
-    // document.getElementById("altura").value = altura;
 
-    document.getElementById("nombre").innerHTML = pokemon.nombre;
-    pokemon.imagen();
-    document.getElementById("categoria").value = pokemon.categoria;
-    document.getElementById("tipo").value = pokemon.tipo;
-    document.getElementById("habilidad").value = pokemon.habilidad;
-    document.getElementById("haboculta").value = pokemon.habilidadOculta;
-    document.getElementById("peso").value = pokemon.peso;
-    document.getElementById("altura").value = pokemon.altura;
-    document.getElementById("imc").value = pokemon.obtenerIMC();
+    let idPokemon = Math.floor(Math.random() * 386 + 252);
 
+    fetch(`https://pokeapi.co/api/v2/pokemon/${idPokemon}/`)
+        .then(response => response.json())
+        .then(data => {
+            // document.getElementById("imagen").src = data.sprites.other.home.front_default;
+            pokemon.id = data.id;
+            pokemon.nombre = data.name;
+            pokemon.imagen = data.sprites.other.home.front_default;
+            pokemon.tipo = data.types[0].type.name;
+            pokemon.peso = data.weight;
+            pokemon.altura = data.height;
+
+            console.log(pokemon);
+
+            document.getElementById("nombre").innerHTML = pokemon.nombre;
+            document.getElementById("imagen").src = pokemon.imagen;
+            document.getElementById("tipo").value = pokemon.tipo;
+            document.getElementById("habilidad").value = pokemon.habilidad(data.abilities);
+            document.getElementById("peso").value = pokemon.peso;
+            document.getElementById("altura").value = pokemon.altura;
+        });
 }
